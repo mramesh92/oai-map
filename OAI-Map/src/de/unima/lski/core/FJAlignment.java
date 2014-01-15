@@ -23,8 +23,8 @@ import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 
 public class FJAlignment extends URIAlignment implements AlignmentProcess {
 	
-	private static String pathOnto1;
-	private static String pathOnto2;
+	private static String pathOnto1 = "C:/Users/Lernzone/Desktop/OAEI/conf/ekaw.owl";
+	private static String pathOnto2 = "C:/Users/Lernzone/Desktop/OAEI/conf/cmt.owl";
 	
 	//aligns two ontologies and prints to console 
 	public static void main(String[] args) throws FileNotFoundException, AlignmentException, UnsupportedEncodingException{
@@ -84,7 +84,7 @@ public class FJAlignment extends URIAlignment implements AlignmentProcess {
 	
 	private URI recreateClass(String entity, OWLOntology onto){
 		for(OWLClass classy:onto.getClassesInSignature()){
-			if(classy.getIRI().getFragment().equals(entity)){
+			if(classy.getIRI().getFragment().equalsIgnoreCase(entity)){
 				return classy.getIRI().toURI();
 			}
 		}
@@ -103,7 +103,7 @@ public class FJAlignment extends URIAlignment implements AlignmentProcess {
 	private URI recreateObjectProp(String entity, OWLOntology onto){
 		for(OWLObjectProperty prop:onto.getObjectPropertiesInSignature()){
 //			System.out.println(prop.getIRI().getFragment()+ "    "  + entity);
-			if(prop.getIRI().getFragment().equals(entity)){
+			if(prop.getIRI().getFragment().equalsIgnoreCase(entity)){
 				return prop.getIRI().toURI();
 			}
 		}
@@ -118,7 +118,7 @@ public class FJAlignment extends URIAlignment implements AlignmentProcess {
 	}
 	private URI recreateDatatype(String entity, OWLOntology onto){
 		for(OWLDatatype type:onto.getDatatypesInSignature()){
-			if(type.getIRI().getFragment().equals(entity)){
+			if(type.getIRI().getFragment().equalsIgnoreCase(entity)){
 				return type.getIRI().toURI();
 			}
 		}
